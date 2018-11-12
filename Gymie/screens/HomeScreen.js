@@ -8,16 +8,10 @@ import {
   TextInput
 } from 'react-native';
 import { SocialIcon } from 'react-native-elements'
-
-import { WebBrowser } from 'expo';
 import { BasicButton } from '../components/Buttons/';
 import * as Color from '../constants/Colors';
 
 export default class HomeScreen extends React.Component {
-  static navigationOptions = {
-    header: null,
-  };
-
   constructor(props) {
     super(props);
     this.state = {
@@ -39,26 +33,22 @@ export default class HomeScreen extends React.Component {
 
     return (
       <View style={styles.container}>
-          <View style={styles.welcomeContainer}>
-            <Image
-              source={
-                __DEV__
-                  ? require('../assets/images/robot-dev.png')
-                  : require('../assets/images/robot-prod.png')
-              }
-              style={styles.welcomeImage}
-            />
-          </View>
 
-          <View style={styles.getStartedContainer}>
-            {this._maybeRenderDevelopmentModeWarning()}
+        <View style={styles.welcomeContainer}>
+          <Image
 
-            <Text style={styles.getStartedText}>Welcome to Gymie!</Text>
-          </View>
+          source={
+            __DEV__
+              ? require('../assets/images/robot-dev.png')
+              : require('../assets/images/robot-prod.png')
+          }
+          style={styles.welcomeImage}
+        />
+       </View>
 
           <View style={styles.helpContainer}>
 
-              <View
+               <View
                 style={{
                   borderBottomColor: 'black',
                   borderBottomWidth: 1,
@@ -88,88 +78,52 @@ export default class HomeScreen extends React.Component {
                   autoCapitalize = 'none'
                   style={{paddingBottom: 15, fontSize: 15, alignSelf: "flex-start"}}
                 />              
-              </View>
+              </View>      
 
-            <BasicButton
-              name={"Login"}
-              onPress={this.logIn.bind(this)}
-              loading={loggingIn}
-              color={Color.tintColor}
-              style={{marginTop: 15}}
-            />
-            <BasicButton
-              name={"Sign Up"}
-              onPress={this.signUp}
-              loading={this.state.signingUp}
-              color={Color.tintColor}
-              style={{marginTop: 10}}
-              disabled={!this.state.loggingIn}
-            />
-
-            <View
-            style={{
-              marginTop: 40,
-              marginBottom: 10,
-              borderBottomColor: 'black',
-              borderBottomWidth: 1,
-              width: '80%',
-            }}/>
-
-            <SocialIcon
-              title='Sign In With Facebook'
-              button
-              type='facebook'
-              style={{width: "80%", borderRadius: 5}}
-            />
-
-            <SocialIcon
-              title='Sign In With Google'
-              button
-              type='google'
-              style={{width: "80%", borderRadius: 5, 
-              backgroundColor: 'rgba(223, 66, 37, 0.8)',}}
-              
-            />
-   
-          </View>
-
-          
+              <BasicButton
+                name={"Login"}
+                onPress={this.logIn.bind(this)}
+                loading={loggingIn}
+                color={Color.tintColor}
+                style={{marginTop: 15}}
+              />
+              <BasicButton
+                name={"Sign Up"}
+                onPress={this.signUp}
+                loading={this.state.signingUp}
+                color={Color.tintColor}
+                style={{marginTop: 10}}
+                disabled={!this.state.loggingIn}
+              />
+      
+              <View
+              style={{
+                marginTop: 40,
+                marginBottom: 10,
+                borderBottomColor: 'black',
+                borderBottomWidth: 1,
+                width: '80%',
+              }}/>
+  
+              <SocialIcon
+                title='Sign In With Facebook'
+                button
+                type='facebook'
+                style={{width: "80%", borderRadius: 5}}
+              />
+  
+              <SocialIcon
+                title='Sign In With Google'
+                button
+                type='google'
+                style={{width: "80%", borderRadius: 5, 
+                backgroundColor: 'rgba(223, 66, 37, 0.8)',}}
+                
+              />
+        </View>
       </View>
     );
   }
-
-  _maybeRenderDevelopmentModeWarning() {
-    if (__DEV__) {
-      const learnMoreButton = (
-        <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
-          Learn more
-        </Text>
-      );
-
-      return (
-        <Text style={styles.developmentModeText}>
-          Development mode is enabled, your app will be slower but you can use useful development
-          tools. {learnMoreButton}
-        </Text>
-      );
-    } else {
-      return (
-        <Text style={styles.developmentModeText}>
-          You are not in development mode, your app will run at full speed.
-        </Text>
-      );
-    }
-  }
-
-  _handleLearnMorePress = () => {
-    WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/guides/development-mode');
-  };
-
-  _handleHelpPress = () => {
-    WebBrowser.openBrowserAsync(
-      'https://docs.expo.io/versions/latest/guides/up-and-running.html#can-t-see-your-changes'
-    );
-  };
 }
 
 const styles = StyleSheet.create({
