@@ -11,7 +11,7 @@ import { SocialIcon } from 'react-native-elements'
 import { BasicButton } from '../components/Buttons/';
 import * as Color from '../constants/Colors';
 
-export default class HomeScreen extends React.Component {
+export default class LoginScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
