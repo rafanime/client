@@ -1,6 +1,8 @@
 import { combineReducers } from "redux";
-import {reducer} from "./myReducer";
+import todo, * as todos from "./myReducer";
+import friendReducer, * as friends from "./friendReducer";
 
 export default combineReducers({
-  reducer,
+  todo,
+  friendReducer
 });

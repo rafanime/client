@@ -6,8 +6,8 @@ import {
 import { BasicButton } from '../components/Buttons'
 import * as Color from '../constants/Colors';
 import { connect } from 'react-redux';
-import { actionCreators } from '../reducers/myReducer'
-
+import { add } from '../actions';
+import { bindActionCreators } from 'redux';
 
 class HomeScreen extends React.Component {
   constructor(props) {
@@ -15,15 +15,10 @@ class HomeScreen extends React.Component {
   }
 
   updateStore = () => {
-    const {dispatch} = this.props
-
-    dispatch(actionCreators.add("ONE MORE"))
+    this.props.dispatch(add("CDS"));
   }
 
-  render() {
-    const cens = this.props;
-    console.log(this.props);
-    
+  render() {    
     return (
       <View style={styles.container}>
         <BasicButton
@@ -51,5 +46,19 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => ({
   todos: state.todos,
 })
+
+
+
+const mapDispatchToProps = dispatch => ({
+  ...bindActionCreators(
+    {
+      add
+    },
+    dispatch,
+  )
+})
+
+
+
 
 export default connect(mapStateToProps)(HomeScreen);

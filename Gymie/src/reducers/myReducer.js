@@ -1,40 +1,16 @@
-import { REHYDRATE } from 'redux-persist';
+import * as types from '../actions/actionTypes';
 
-
-// Initial state of the store
 const initialState = {
-  todos: ["Click to remove", "Learn React", "Write Code", "Ship App"]
+  todos: ["shopping"]
 };
 
-// The types of actions that you can dispatch to modify the state of the store
-export const types = {
-  ADD: "ADD",
-  REMOVE: "REMOVE"
-};
-
-// Helper functions to dispatch actions, optionally with payloads
-export const actionCreators = {
-  add: item => {
-    return { type: types.ADD, payload: item };
-  },
-  remove: index => {
-    return { type: types.REMOVE, payload: index };
-  }
-};
-
-export const reducer = (state = initialState, action) => {
+export default (state = initialState, action) => {
   const { todos } = state;
   const { type, payload } = action;
 
   switch (type) {
-
-    case REHYDRATE: {
-
-      return {
-        ...state,
-      }
-    }
     case types.ADD: {
+      console.log("THIS WAS CALLED!!");
       return {
         ...state,
         todos: [payload, ...todos]
@@ -46,7 +22,7 @@ export const reducer = (state = initialState, action) => {
         todos: todos.filter((todo, i) => i !== payload)
       };
     }
+    default:
+      return state
   }
-
-  return state;
 };
