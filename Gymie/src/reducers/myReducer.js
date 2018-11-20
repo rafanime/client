@@ -1,7 +1,7 @@
 import * as types from '../actions/actionTypes';
 
 const initialState = {
-  todos: ["shopping"]
+  
 };
 
 export default (state = initialState, action) => {
@@ -10,7 +10,6 @@ export default (state = initialState, action) => {
 
   switch (type) {
     case types.ADD: {
-      console.log("THIS WAS CALLED!!");
       return {
         ...state,
         todos: [payload, ...todos]

@@ -1,6 +1,9 @@
 import HomeScreen from './HomeScreen';
-
+import SplashScreen from './SplashScreen';
+import LoginScreen from './LoginScreen';
 
 export {
-  HomeScreen
+  HomeScreen,
+  SplashScreen,
+  LoginScreen
 }

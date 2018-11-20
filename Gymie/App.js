@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { createStackNavigator } from 'react-navigation'
-import { HomeScreen } from './src/screens';
+import * as Screens from './src/screens';
 import { Provider } from 'react-redux'
 import { createStore, compose, applyMiddleware } from 'redux'
 import { persistReducer, persistStore } from 'redux-persist'
@@ -20,15 +20,31 @@ const logger = createLogger();
 const enchancer = compose(applyMiddleware(thunk, promise, logger));
 
 const pReducer = persistReducer(persistConfig, reducer, enchancer);
-
-
 const store = createStore(pReducer, {}, enchancer);
-const persistor = persistStore(store);
-const Navigator = createStackNavigator({
-    Home:  { screen: HomeScreen},
+
+const LoginStack = createStackNavigator(
+  {
+    Login:  { screen: Screens.LoginScreen },
+  }
+);
+
+const HomeStack = createStackNavigator(
+  {
+    Home:  { screen: Screens.HomeScreen },
+    //settings screen
+    //user page
+  }
+);
+
+const RootStack = createStackNavigator(
+  {
+    Login:  { screen: Screens.LoginScreen },
+    Splash: { screen: Screens.SplashScreen },
   },
   {
-    initialRouteName: 'Home',
+    mode: 'modal',
+    headerMode: 'none',
+    initialRouteName: 'Splash'
   }
 );
 
@@ -36,7 +52,7 @@ export default class App extends Component {
   render() {
     return (
       <Provider store= { store }>
-        <Navigator />
+        <RootStack />
       </Provider>
     );
   }
