@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import todo, * as todos from "./myReducer";
-import friendReducer, * as friends from "./friendReducer";
+//import todo from "./myReducer";
+import login from "./loginReducer";
 
 export default combineReducers({
-  todo,
-  friendReducer
+  //todo,
+  login
 });

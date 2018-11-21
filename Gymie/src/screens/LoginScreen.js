@@ -8,10 +8,12 @@ import {
   TextInput
 } from 'react-native';
 import { SocialIcon } from 'react-native-elements'
+import { connect } from 'react-redux';
 import { BasicButton } from '../components/Buttons/';
 import * as Color from '../constants/Colors';
+import { login } from '../actions';
 
-export default class LoginScreen extends React.Component {
+class LoginScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,7 +23,12 @@ export default class LoginScreen extends React.Component {
   }
 
   logIn(){
+    const { dispatch } = this.props;
+
     this.setState({loggingIn : true});
+    dispatch(login({email: "rafael.lourenco.nunes@gmail.com", "password": "ranugrade10000"}));
+
+
   }
 
   signUp(){
@@ -216,3 +223,10 @@ const styles = StyleSheet.create({
     color: '#2e78b7',
   },
 });
+
+
+const mapStateToProps = (state) => ({
+
+})
+
+export default connect(mapStateToProps)(LoginScreen);
